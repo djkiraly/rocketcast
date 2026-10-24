@@ -1,0 +1,2 @@
+# Local secrets for `wrangler dev`. Copy to `.dev.vars` (git-ignored). Nothing is required yet;
+# M05 adds the signing key for session tokens (SPEC §14).

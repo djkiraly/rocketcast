@@ -1,0 +1,22 @@
+# MediaMTX configuration — PLACEHOLDER (M00).
+# Enables the protocols RocketCast uses (SPEC §5.1): SRT + RTMP ingest, WebRTC / LL-HLS return
+# preview. Everything else is upstream default. Authentication (per-session stream ID/passphrase
+# validated by an HTTP auth hook against the web API) and per-path settings arrive in M07.
+
+logLevel: info
+
+# Contribution ingest
+srt: yes
+rtmp: yes
+
+# Return preview to the operator (I-11); WebRTC vs LL-HLS decided with an ADR in M07.
+webrtc: yes
+hls: yes
+
+# Not used by RocketCast.
+rtsp: no
+
+# M07: authMethod: http + authHTTPAddress pointing at the API's auth hook, and
+# per-session `paths:` entries (stream ID = sessionId, passphrase from the API).
+paths:
+  all_others:

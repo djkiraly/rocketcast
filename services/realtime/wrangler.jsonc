@@ -1,0 +1,16 @@
+// Wrangler configuration for @rocketcast/realtime.
+// No account_id here: set CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN in the environment for deploys.
+{
+  "$schema": "https://unpkg.com/wrangler@4/config-schema.json",
+  "name": "rocketcast-realtime",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "observability": {
+    "enabled": true,
+  },
+  // One Durable Object per stream session (SPEC §14, ADR-017). SQLite-backed storage.
+  "durable_objects": {
+    "bindings": [{ "name": "SESSION", "class_name": "SessionDO" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["SessionDO"] }],
+}

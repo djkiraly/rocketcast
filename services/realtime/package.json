@@ -1,0 +1,23 @@
+{
+  "name": "@rocketcast/realtime",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Realtime fan-out service: Cloudflare Worker + one Durable Object per stream session (SPEC §5.1, §14).",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "cf-typegen": "wrangler types --include-runtime=false"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261024.1",
+    "@rocketcast/config": "workspace:*",
+    "eslint": "^10.13.0",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.5",
+    "wrangler": "^4.152.0"
+  }
+}

@@ -10,21 +10,21 @@ Build the monorepo skeleton top-down: root tooling and `packages/config` first (
 
 ### Toolchain decisions (M00-local, not ADRs unless they stick)
 
-| Choice     | Value                                                           | Why                                                                                                                                 |
-| ---------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Node       | 26 (`.nvmrc`), engines `>=22`                                   | Current on David's machine; CI runs 22 and 26                                                                                       |
-| pnpm       | 10.15 via `packageManager`; `node-linker=hoisted`               | RN/Metro tooling expects a flat `node_modules`                                                                                      |
-| TypeScript | **5.9 pinned** (7.x is current)                                 | typescript-eslint 8 requires `<6.1`; TS 7 is the native-port compiler. Revisit after M02.                                           |
-| ESLint     | 10.x flat config, typescript-eslint 8                           | Shared fragments in `packages/config/eslint`: `base`, `node`, `browser`, `pureEngine`                                               |
-| Prettier   | 3.x                                                             | Shared config; `pnpm format:check` runs in CI                                                                                       |
-| Vitest     | 5.x                                                             | `@cloudflare/vitest-pool-workers` 0.23 only supports Vitest 4, so realtime has a plain unit test for now (revisit M05)              |
-| Tailwind   | 4.x (`@tailwindcss/postcss`)                                    | Shared `@theme` preset CSS; shadcn new-york tokens in `apps/web/app/globals.css`                                                    |
-| Next.js    | 16.4 App Router                                                 | `typecheck` runs `next typegen` first; `next-env.d.ts` is generated and gitignored                                                  |
-| Expo       | SDK 58, dev client, RN 0.88, React 19.3.0 (exact, as Expo pins) | Dynamic `app.config.ts` imports `BRAND`; `newArchEnabled` removed (always on in SDK 58)                                             |
-| Drizzle    | drizzle-orm 0.45 + drizzle-kit 0.31, `@neondatabase/serverless` | Per CLAUDE.md                                                                                                                       |
-| Cloudflare | wrangler 4.152, workers-types 5.x, `wrangler.jsonc`             | SQLite-backed DO class via `new_sqlite_classes`                                                                                     |
-| zod        | 4.x                                                             | `EnvelopeSchema` uses `z.iso.datetime({ offset: true })`                                                                            |
-| Libraries  | `exports` point at `dist/`; turbo tasks `dependsOn: ["^build"]` | Proper package hygiene; dev consumers get built output via turbo                                                                    |
+| Choice     | Value                                                           | Why                                                                                                                    |
+| ---------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Node       | 26 (`.nvmrc`), engines `>=22`                                   | Current on David's machine; CI runs 22 and 26                                                                          |
+| pnpm       | 10.15 via `packageManager`; `node-linker=hoisted`               | RN/Metro tooling expects a flat `node_modules`                                                                         |
+| TypeScript | **5.9 pinned** (7.x is current)                                 | typescript-eslint 8 requires `<6.1`; TS 7 is the native-port compiler. Revisit after M02.                              |
+| ESLint     | 10.x flat config, typescript-eslint 8                           | Shared fragments in `packages/config/eslint`: `base`, `node`, `browser`, `pureEngine`                                  |
+| Prettier   | 3.x                                                             | Shared config; `pnpm format:check` runs in CI                                                                          |
+| Vitest     | 5.x                                                             | `@cloudflare/vitest-pool-workers` 0.23 only supports Vitest 4, so realtime has a plain unit test for now (revisit M05) |
+| Tailwind   | 4.x (`@tailwindcss/postcss`)                                    | Shared `@theme` preset CSS; shadcn new-york tokens in `apps/web/app/globals.css`                                       |
+| Next.js    | 16.4 App Router                                                 | `typecheck` runs `next typegen` first; `next-env.d.ts` is generated and gitignored                                     |
+| Expo       | SDK 58, dev client, RN 0.88, React 19.3.0 (exact, as Expo pins) | Dynamic `app.config.ts` imports `BRAND`; `newArchEnabled` removed (always on in SDK 58)                                |
+| Drizzle    | drizzle-orm 0.45 + drizzle-kit 0.31, `@neondatabase/serverless` | Per CLAUDE.md                                                                                                          |
+| Cloudflare | wrangler 4.152, workers-types 5.x, `wrangler.jsonc`             | SQLite-backed DO class via `new_sqlite_classes`                                                                        |
+| zod        | 4.x                                                             | `EnvelopeSchema` uses `z.iso.datetime({ offset: true })`                                                               |
+| Libraries  | `exports` point at `dist/`; turbo tasks `dependsOn: ["^build"]` | Proper package hygiene; dev consumers get built output via turbo                                                       |
 
 ### Risks (as planned → outcome)
 

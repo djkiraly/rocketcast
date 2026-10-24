@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./base.json",
+  "// ": "For pure TS packages (scoring-engine, overlay, protocol). No DOM, no Node types by default.",
+  "compilerOptions": {
+    "lib": ["ES2023"],
+    "types": []
+  }
+}

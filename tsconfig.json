@@ -1,0 +1,9 @@
+{
+  "// ": "Root tsconfig exists for editor tooling only. Each workspace extends a preset from packages/config/tsconfig.",
+  "extends": "./packages/config/tsconfig/base.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "files": [],
+  "include": []
+}

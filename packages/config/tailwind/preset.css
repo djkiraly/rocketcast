@@ -1,0 +1,19 @@
+/*
+ * Shared Tailwind 4 preset. Import after tailwindcss in each app's global CSS:
+ *   @import "tailwindcss";
+ *   @import "@rocketcast/config/tailwind/preset.css";
+ * Theme tokens here are app-chrome defaults, NOT team branding. Team/club overlay
+ * colors come from ThemeSnapshot at runtime (SPEC §6 I-2) and never from CSS.
+ */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", Menlo, monospace;
+
+  --color-brand-50: oklch(0.97 0.02 40);
+  --color-brand-100: oklch(0.93 0.05 40);
+  --color-brand-500: oklch(0.65 0.2 40);
+  --color-brand-600: oklch(0.58 0.2 40);
+  --color-brand-900: oklch(0.3 0.1 40);
+
+  --radius-card: 0.75rem;
+}

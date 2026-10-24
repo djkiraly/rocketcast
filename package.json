@@ -1,0 +1,30 @@
+{
+  "name": "rocketcast",
+  "private": true,
+  "version": "0.0.0",
+  "description": "RocketCast monorepo — team-branded YouTube streaming and season stats for travel sports clubs (by RocketCore).",
+  "license": "UNLICENSED",
+  "type": "module",
+  "packageManager": "pnpm@10.15.1",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "db:generate": "pnpm --filter @rocketcast/db db:generate",
+    "db:migrate": "pnpm --filter @rocketcast/db db:migrate",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@rocketcast/config": "workspace:*",
+    "prettier": "^3.9.10",
+    "turbo": "^2.11.10",
+    "typescript": "~5.9.3"
+  }
+}

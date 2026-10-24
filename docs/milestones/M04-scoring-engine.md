@@ -5,6 +5,7 @@
 **Read first:** SPEC §8 (all), §6 (I-7), CLAUDE.md hard rules.
 
 ## Scope
+
 - Types for `VolleyballRules`, all events in SPEC §8.2, derived `MatchState`, `BoxScore`, `SeasonLine`.
 - `applyEvent`, `replay`, `validate`, `deriveBoxScore`, `deriveSeasonLine` (SPEC §8.5).
 - Rules presets: `usav-juniors-pool`, `usav-juniors-bracket`, `nfhs-hs`, `aau`, `custom`. Put preset values in one file with a comment block marking them **[VERIFY with club director]**.
@@ -17,16 +18,19 @@
 - Serializable state (JSON) and a versioned event schema (`schemaVersion`) with an upgrade path.
 
 ## Tests
+
 - Unit tests per rule and per event type.
 - Property tests (fast-check): replay(events) is deterministic; score never negative; a completed set always satisfies its win condition; undo-then-redo restores the same state; stats sums reconcile (team kills = Σ player kills, etc.).
 - **Golden fixtures:** at least 5 hand-built full matches (pool play split, best-of-3 with deciding set, capped set, heavy subs, many corrections) with expected box scores.
 - Performance: replaying a 5-set stat-mode match (~1,500 events) < 20 ms in Node.
 
 ## Acceptance criteria
+
 - [ ] 100% of golden fixtures pass; property tests run ≥ 1,000 cases each in CI.
 - [ ] Zero runtime dependencies; no `Date.now`, `Math.random`, or I/O in the package (lint rule enforces it).
 - [ ] Public API documented with examples in the package README.
 - [ ] `deriveSeasonLine` aggregates multiple matches correctly, including a correction made to an earlier match.
 
 ## Out of scope
+
 Persistence, sync, UI.

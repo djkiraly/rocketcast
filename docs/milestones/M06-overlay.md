@@ -5,6 +5,7 @@
 **Read first:** SPEC §6 (I-1, I-2, I-3, I-5), §9, M01 notes (chosen render approach), ADRs from M01.
 
 ## Scope
+
 - `ThemeSnapshot` resolver: org theme + team override + active sponsors + layout options → resolved JSON with content hash; stored in `theme_snapshots` (immutable). Same inputs always produce the same hash.
 - Theme tokens: primary/secondary/accent colors, text-on-color contrast (auto-checked, WCAG AA for scorebug text), logo asset hashes, abbreviation (≤ 4 chars), font from approved list, scorebug position/style options.
 - Overlay components from SPEC §9.1, implemented in the format chosen in M01.
@@ -15,6 +16,7 @@
 - Visual regression: Playwright screenshots of each component × 3 sample themes (light colors, dark colors, low-contrast pair that must be auto-corrected).
 
 ## Acceptance criteria
+
 - [ ] Changing a team logo mid-session does not change the live overlay until a new snapshot is explicitly pushed; then it changes within 2 s.
 - [ ] Snapshot hash is stable for identical inputs (property test).
 - [ ] Visual regression suite passes; compositor output frame matches web preview frame within a documented tolerance.
@@ -22,4 +24,5 @@
 - [ ] Sponsor rotation respects weights within ±5% over a simulated 2-hour session.
 
 ## Out of scope
+
 Branding editor UI (M11), compositor production service (M07).

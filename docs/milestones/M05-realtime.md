@@ -5,6 +5,7 @@
 **Read first:** SPEC §6 (I-4, I-8, I-9), §14, §7 (`game_events`, `scorer_leases`, `stream_sessions`).
 
 ## Scope
+
 - `packages/protocol`: zod schemas for the realtime `Envelope` and each payload type; sync API request/response schemas.
 - Tables: `game_events`, `scorer_leases`, `stream_sessions` (state machine: `created → starting → live → reconnecting → ended`), plus `end_reason`.
 - **Sync API** (web): `POST /api/games/:id/events` accepts a batch from the device outbox `{clientId, clientSeq, event}`; idempotent on `(clientId, clientSeq)`; requires the scorer lease; assigns `server_seq`; validates with the scoring engine; returns accepted/rejected with reasons.
@@ -15,6 +16,7 @@
 - Client library (`packages/protocol/client`) used by web, mobile, and compositor renderer: enforces I-4 drop rules in one place.
 
 ## Acceptance criteria
+
 - [ ] Duplicate batch submission creates no duplicate events.
 - [ ] Second device without the lease cannot write; handoff works and is recorded.
 - [ ] A subscriber bound to session A never applies a message for session B (test injects cross-session and stale-seq messages).
@@ -22,4 +24,5 @@
 - [ ] Load test: 200 concurrent sessions × realistic event rate; p95 server fan-out latency recorded; Durable Objects cost estimate added to COST_MODEL ([VERIFY] resolved).
 
 ## Out of scope
+
 Mobile UI, overlay visuals, video.

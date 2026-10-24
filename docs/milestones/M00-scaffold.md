@@ -5,6 +5,7 @@
 **Read first:** CLAUDE.md (repo layout, stack), SPEC §5.
 
 ## Scope
+
 - pnpm workspaces + Turborepo with the layout in CLAUDE.md.
 - Workspace package scope `@rocketcast/*`; Expo app bundle/package ID `com.rocketcore.rocketcast`.
 - `packages/config`: shared `tsconfig` (strict), ESLint, Prettier, Tailwind preset, and `src/brand.ts` (product name "RocketCast", publisher "RocketCore") — the only place the name is hard-coded.
@@ -20,6 +21,7 @@
 - `.env.example` per app/service documenting variables.
 
 ## Acceptance criteria
+
 - [ ] Fresh clone → `pnpm install && pnpm lint && pnpm typecheck && pnpm test` passes.
 - [ ] `pnpm --filter web dev` serves the placeholder page.
 - [ ] Mobile app launches in iOS simulator and Android emulator (document commands).
@@ -27,4 +29,5 @@
 - [ ] CI passes on the initial commit.
 
 ## Out of scope
+
 Any product features, database tables, auth.

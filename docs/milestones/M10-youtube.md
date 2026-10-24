@@ -5,6 +5,7 @@
 **Read first:** SPEC §11, §6 (I-1), §16 (made-for-kids, tokens); M07 output adapter.
 
 ## Scope
+
 - OAuth connect flow at org level, optional team-level override; least-privilege scopes; encrypted refresh tokens; disconnect/revoke.
 - Channel readiness check: live streaming enabled on the channel; surface clear guidance if not (e.g., new channels may need enablement time) — [VERIFY] current requirements.
 - Per-team settings: title template (`{team} vs {opponent} · {event} · {court}`), description template, default privacy (public/unlisted/private), **made-for-kids choice required**, thumbnail (auto-generated from theme: team logos + matchup).
@@ -17,6 +18,7 @@
 - Error handling: token revoked, quota exhausted, broadcast creation failure → automatic fallback path with a clear operator message; never block going live if a stream key exists.
 
 ## Acceptance criteria
+
 - [ ] Connect channel → stream a match → appears as its own YouTube video with templated title and chosen privacy/audience.
 - [ ] Back-to-back matches produce separate YouTube videos while the phone stays connected (or documented fallback works).
 - [ ] Revoked token mid-day: next match goes live via fallback path with an operator message.
@@ -24,4 +26,5 @@
 - [ ] Google OAuth verification status recorded (approved / pending with date).
 
 ## Out of scope
+
 Other destinations (Facebook etc.).

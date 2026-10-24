@@ -28,11 +28,18 @@ export const base = tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    // Type-only import hygiene applies to TypeScript sources only; some presets (eslint-config-next)
+    // parse plain JS with Babel, where this rule would throw for lack of parser services.
+    files: ["**/*.{ts,tsx,mts,cts}"],
     rules: {
       "@typescript-eslint/consistent-type-imports": [
         "error",
         { prefer: "type-imports", fixStyle: "inline-type-imports" },
       ],
+    },
+  },
+  {
+    rules: {
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" },
@@ -88,7 +95,10 @@ export const pureEngine = [
         "error",
         {
           patterns: [
-            { group: ["node:*", "fs", "path", "os", "crypto", "http", "https", "child_process"], message: "Engine has zero runtime dependencies and no I/O." },
+            {
+              group: ["node:*", "fs", "path", "os", "crypto", "http", "https", "child_process"],
+              message: "Engine has zero runtime dependencies and no I/O.",
+            },
           ],
         },
       ],

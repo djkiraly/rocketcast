@@ -1,0 +1,30 @@
+{
+  "name": "@rocketcast/scoring-engine",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Pure TypeScript volleyball scoring engine. Zero runtime dependencies, no I/O, no clocks, no randomness.",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@rocketcast/config": "workspace:*",
+    "eslint": "^10.13.0",
+    "fast-check": "^4.10.2",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.5"
+  }
+}

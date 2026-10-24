@@ -1,0 +1,29 @@
+{
+  "name": "@rocketcast/overlay",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Overlay templates and the render function that turns a game snapshot plus team theme into a 1920x1080 scoreboard frame.",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@rocketcast/config": "workspace:*",
+    "eslint": "^10.13.0",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.5"
+  }
+}
